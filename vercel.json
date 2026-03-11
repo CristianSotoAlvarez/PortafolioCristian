@@ -1,8 +1,5 @@
 {
-  "routes": [
-    { "src": "/cv-es.pdf", "dest": "/cv-es.pdf" },
-    { "src": "/cv-en.pdf", "dest": "/cv-en.pdf" },
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
