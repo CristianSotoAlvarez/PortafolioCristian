@@ -111,7 +111,7 @@ export default function Hero({ lang }) {
                 </svg>
                 LinkedIn
               </a>
-              <a className="cv-btn" href="/cv.pdf" download="Cristian_Soto_CV.pdf">
+              <a className="cv-btn" href={lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf'} download="Cristian_Soto_CV.pdf">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12 16l-5-5 1.41-1.41L11 13.17V4h2v9.17l2.59-2.58L17 11l-5 5zm-7 2h14v2H5v-2z" />
                 </svg>
