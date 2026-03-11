@@ -1,12 +1,5 @@
 import { useState, useEffect } from 'react'
-
-const links = [
-  { label: 'Inicio', href: '#hero' },
-  { label: 'Sobre mí', href: '#about' },
-  { label: 'Stack', href: '#stack' },
-  { label: 'Proyectos', href: '#projects' },
-  { label: 'Contacto', href: '#contact' },
-]
+import t from '../i18n'
 
 function SunIcon() {
   return (
@@ -24,9 +17,10 @@ function MoonIcon() {
   )
 }
 
-export default function Navbar({ theme, onToggleTheme }) {
+export default function Navbar({ theme, onToggleTheme, lang, onToggleLang }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const links = t[lang].nav.links
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -57,6 +51,15 @@ export default function Navbar({ theme, onToggleTheme }) {
               </li>
             ))}
           </ul>
+
+          <button
+            className="theme-toggle"
+            onClick={onToggleLang}
+            aria-label="Cambiar idioma"
+            style={{ fontWeight: 700, fontSize: '0.8rem', letterSpacing: '0.05em' }}
+          >
+            {lang === 'es' ? 'EN' : 'ES'}
+          </button>
 
           <button
             className="theme-toggle"

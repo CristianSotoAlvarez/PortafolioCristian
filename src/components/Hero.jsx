@@ -1,11 +1,5 @@
 import { useState, useEffect } from 'react'
-
-const TYPING_TEXTS = [
-  'Estudiante de Ing. Informática',
-  'Desarrollador Full Stack',
-  'Angular & Ionic Developer',
-  'Java & Python Enthusiast',
-]
+import t from '../i18n'
 
 function useTyping(texts, speed = 90, deleteSpeed = 50, pause = 2200) {
   const [display, setDisplay] = useState('')
@@ -13,6 +7,14 @@ function useTyping(texts, speed = 90, deleteSpeed = 50, pause = 2200) {
   const [charIdx, setCharIdx] = useState(0)
   const [deleting, setDeleting] = useState(false)
   const [waiting, setWaiting] = useState(false)
+
+  useEffect(() => {
+    setDisplay('')
+    setIdx(0)
+    setCharIdx(0)
+    setDeleting(false)
+    setWaiting(false)
+  }, [texts])
 
   useEffect(() => {
     if (waiting) return
@@ -50,8 +52,9 @@ function useTyping(texts, speed = 90, deleteSpeed = 50, pause = 2200) {
   return display
 }
 
-export default function Hero() {
-  const typingText = useTyping(TYPING_TEXTS)
+export default function Hero({ lang }) {
+  const tr = t[lang].hero
+  const typingText = useTyping(tr.typing)
 
   const scrollTo = (id) => {
     document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -59,10 +62,10 @@ export default function Hero() {
 
   return (
     <section className="hero" id="hero">
-<div className="container">
+      <div className="container">
         <div className="hero-grid">
           <div className="hero-content">
-            <p className="hero-greeting">Hola, soy</p>
+            <p className="hero-greeting">{tr.greeting}</p>
 
             <h1 className="hero-name">
               Cristian<br />
@@ -75,10 +78,8 @@ export default function Hero() {
             </div>
 
             <p className="hero-description">
-              Estudiante de último año de <strong style={{ color: 'var(--amber)' }}>Ingeniería Informática</strong> en
-              la PUCV, apasionado por construir soluciones digitales modernas.
-              Me oriento hacia el desarrollo <strong style={{ color: 'var(--text)' }}>Full Stack</strong> con experiencia
-              en tecnologías web, móviles y de base de datos.
+              {tr.description1} <strong style={{ color: 'var(--amber)' }}>{tr.degree}</strong> {tr.description2}{' '}
+              <strong style={{ color: 'var(--text)' }}>{tr.fullstack}</strong> {tr.description3}
             </p>
 
             <div className="hero-buttons">
@@ -86,14 +87,14 @@ export default function Hero() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
                 </svg>
-                Ver proyectos
+                {tr.btnProjects}
               </button>
               <button className="btn btn-outline" onClick={() => scrollTo('#contact')}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
-                Contacto
+                {tr.btnContact}
               </button>
             </div>
 
@@ -110,25 +111,17 @@ export default function Hero() {
                 </svg>
                 LinkedIn
               </a>
-              <a
-                className="cv-btn"
-                href="/cv.pdf"
-                download="Cristian_Soto_CV.pdf"
-              >
+              <a className="cv-btn" href="/cv.pdf" download="Cristian_Soto_CV.pdf">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12 16l-5-5 1.41-1.41L11 13.17V4h2v9.17l2.59-2.58L17 11l-5 5zm-7 2h14v2H5v-2z" />
                 </svg>
-                Descargar CV
+                {tr.btnCV}
               </a>
             </div>
           </div>
 
           <div className="hero-avatar-wrapper">
-            <img
-              src="/avatars/avatar-hello.png"
-              alt="Cristian Soto"
-              className="hero-avatar"
-            />
+            <img src="/avatars/avatar-hello.png" alt="Cristian Soto" className="hero-avatar" />
           </div>
         </div>
       </div>

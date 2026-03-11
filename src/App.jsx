@@ -10,6 +10,7 @@ import Background from './components/Background'
 
 export default function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark')
+  const [lang, setLang] = useState(() => localStorage.getItem('lang') || 'es')
   const [showTop, setShowTop] = useState(false)
 
   useEffect(() => {
@@ -18,26 +19,31 @@ export default function App() {
   }, [theme])
 
   useEffect(() => {
+    localStorage.setItem('lang', lang)
+  }, [lang])
+
+  useEffect(() => {
     const handleScroll = () => setShowTop(window.scrollY > 400)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark')
+  const toggleLang = () => setLang(l => l === 'es' ? 'en' : 'es')
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
   return (
     <>
       <Background theme={theme} />
-      <Navbar theme={theme} onToggleTheme={toggleTheme} />
+      <Navbar theme={theme} onToggleTheme={toggleTheme} lang={lang} onToggleLang={toggleLang} />
       <main style={{ position: 'relative', zIndex: 1 }}>
-        <Hero />
-        <About />
-        <Stack />
-        <Projects />
-        <Contact />
+        <Hero lang={lang} />
+        <About lang={lang} />
+        <Stack lang={lang} />
+        <Projects lang={lang} />
+        <Contact lang={lang} />
       </main>
-      <Footer />
+      <Footer lang={lang} />
 
       <button
         className={`back-to-top${showTop ? ' visible' : ''}`}

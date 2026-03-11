@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import emailjs from '@emailjs/browser'
+import t from '../i18n'
 
 function EmailIcon() {
   return (
@@ -25,7 +26,8 @@ function LinkedInIcon() {
   )
 }
 
-export default function Contact() {
+export default function Contact({ lang }) {
+  const tr = t[lang].contact
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState('')
 
@@ -54,16 +56,13 @@ export default function Contact() {
   return (
     <section className="section" id="contact">
       <div className="container">
-        <h2 className="section-title">Contacto</h2>
-        <p className="section-subtitle">// hablemos()</p>
+        <h2 className="section-title">{tr.title}</h2>
+        <p className="section-subtitle">{tr.subtitle}</p>
 
         <div className="contact-grid">
           <div className="contact-info">
-            <h3>¿Tienes un proyecto en mente?</h3>
-            <p>
-              Estoy abierto a nuevas oportunidades, colaboraciones o simplemente charlar
-              sobre tecnología. No dudes en escribirme.
-            </p>
+            <h3>{tr.heading}</h3>
+            <p>{tr.description}</p>
 
             <div className="contact-links">
               <a
@@ -107,47 +106,47 @@ export default function Contact() {
 
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="name">nombre</label>
+              <label htmlFor="name">{tr.labelName}</label>
               <input
                 id="name"
                 name="name"
                 type="text"
-                placeholder="Tu nombre"
+                placeholder={tr.placeholderName}
                 value={form.name}
                 onChange={handleChange}
                 required
               />
             </div>
             <div className="form-group">
-              <label htmlFor="email">email</label>
+              <label htmlFor="email">{tr.labelEmail}</label>
               <input
                 id="email"
                 name="email"
                 type="email"
-                placeholder="tu@email.com"
+                placeholder={tr.placeholderEmail}
                 value={form.email}
                 onChange={handleChange}
                 required
               />
             </div>
             <div className="form-group">
-              <label htmlFor="message">mensaje</label>
+              <label htmlFor="message">{tr.labelMessage}</label>
               <textarea
                 id="message"
                 name="message"
                 rows={5}
-                placeholder="Hola Cristian, quería comentarte..."
+                placeholder={tr.placeholderMessage}
                 value={form.message}
                 onChange={handleChange}
                 required
               />
             </div>
             <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }} disabled={status === 'sending'}>
-              Enviar mensaje
+              {tr.btnSend}
             </button>
-            {status === 'sending' && <p className="form-status">Enviando...</p>}
-            {status === 'ok'      && <p className="form-status" style={{ color: 'var(--orange)' }}>¡Mensaje enviado correctamente!</p>}
-            {status === 'error'   && <p className="form-status" style={{ color: '#ef4444' }}>Error al enviar. Intenta de nuevo.</p>}
+            {status === 'sending' && <p className="form-status">{tr.sending}</p>}
+            {status === 'ok'      && <p className="form-status" style={{ color: 'var(--orange)' }}>{tr.ok}</p>}
+            {status === 'error'   && <p className="form-status" style={{ color: '#ef4444' }}>{tr.error}</p>}
           </form>
         </div>
       </div>

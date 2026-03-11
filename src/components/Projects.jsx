@@ -1,5 +1,5 @@
-// Cuando tengas tus proyectos, reemplazá este array con tu información real.
-// Cada proyecto tiene: name, description, tags (tecnologías), github (link), demo (link, opcional), icon (emoji)
+import t from '../i18n'
+
 const PROJECTS = []
 
 function GitHubIcon() {
@@ -20,17 +20,19 @@ function ExternalLinkIcon() {
   )
 }
 
-export default function Projects() {
+export default function Projects({ lang }) {
+  const tr = t[lang].projects
+
   return (
     <section className="projects section" id="projects">
       <div className="container">
-        <h2 className="section-title">Proyectos</h2>
-        <p className="section-subtitle">// mis_proyectos[]</p>
+        <h2 className="section-title">{tr.title}</h2>
+        <p className="section-subtitle">{tr.subtitle}</p>
 
         {PROJECTS.length === 0 ? (
           <div className="projects-placeholder">
             <span style={{ fontSize: '3rem' }}>🚧</span>
-            <p>Proyectos próximamente — ¡en construcción!</p>
+            <p>{tr.empty}</p>
           </div>
         ) : (
           <div className="projects-grid">
@@ -40,12 +42,12 @@ export default function Projects() {
                   <span className="project-icon">{project.icon}</span>
                   <div className="project-links">
                     {project.github && (
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" title="Ver código">
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" title={tr.codeLabel}>
                         <GitHubIcon />
                       </a>
                     )}
                     {project.demo && (
-                      <a href={project.demo} target="_blank" rel="noopener noreferrer" title="Ver demo">
+                      <a href={project.demo} target="_blank" rel="noopener noreferrer" title={tr.demoLabel}>
                         <ExternalLinkIcon />
                       </a>
                     )}

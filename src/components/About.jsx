@@ -1,32 +1,23 @@
-export default function About() {
+import t from '../i18n'
+
+export default function About({ lang }) {
+  const tr = t[lang].about
+
   return (
     <section className="about section" id="about">
       <div className="container">
-        <h2 className="section-title">Sobre mí</h2>
-        <p className="section-subtitle">// quien_soy.md</p>
+        <h2 className="section-title">{tr.title}</h2>
+        <p className="section-subtitle">{tr.subtitle}</p>
 
         <div className="about-grid">
           <div className="about-text">
             <p>
-              Soy <strong>Cristian Alonso Soto Álvarez</strong>, estudiante de último año de
-              Ingeniería Informática en la{' '}
-              <span className="highlight">Pontificia Universidad Católica de Valparaíso</span>.
+              {tr.p1a} <strong>Cristian Alonso Soto Álvarez</strong>{tr.p1b}{' '}
+              <span className="highlight">{tr.p1c}</span>.
             </p>
-            <p>
-              Me apasiona el desarrollo de software y estoy orientándome hacia el mundo del{' '}
-              <strong>desarrollo Full Stack</strong>, combinando mi gusto por las interfaces
-              modernas con el desarrollo de lógica de negocio robusta en el backend.
-            </p>
-            <p>
-              A lo largo de mi carrera he trabajado con tecnologías como{' '}
-              <strong>Angular, Ionic, Java y Python</strong>, participando en proyectos
-              académicos y personales que me han permitido desarrollar habilidades tanto
-              en frontend como en backend y bases de datos.
-            </p>
-            <p>
-              Fuera del código, disfruto aprender nuevas tecnologías, resolver desafíos
-              lógicos y colaborar en proyectos que generen impacto real.
-            </p>
+            <p>{tr.p2}</p>
+            <p>{tr.p3}</p>
+            <p>{tr.p4}</p>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -42,17 +33,12 @@ export default function About() {
               <div className="about-card-header">
                 <div className="about-card-icon">🎓</div>
                 <div>
-                  <div className="about-card-title">Pontificia Universidad Católica de Valparaíso</div>
-                  <div className="about-card-subtitle">Ingeniería Informática · Último año</div>
+                  <div className="about-card-title">{tr.cardTitle}</div>
+                  <div className="about-card-subtitle">{tr.cardSubtitle}</div>
                 </div>
               </div>
-              <div className="about-card-body">
-                Formación en desarrollo de software, estructuras de datos, bases de datos,
-                sistemas operativos y más. Actualmente finalizando la carrera con foco en
-                proyectos prácticos de <strong>desarrollo web y móvil</strong>.
-              </div>
+              <div className="about-card-body">{tr.cardBody}</div>
             </div>
-
           </div>
         </div>
       </div>
