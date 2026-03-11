@@ -30,6 +30,7 @@ const STACK = [
   {
     category: 'Herramientas & Plataformas',
     items: [
+      { name: 'Vite',           icon: 'https://cdn.simpleicons.org/vite/646CFF' },
       { name: 'Git',            icon: 'https://cdn.simpleicons.org/git/F05032' },
       { name: 'GitHub',         icon: 'https://cdn.simpleicons.org/github/aaaaaa' },
       { name: 'Postman',        icon: 'https://cdn.simpleicons.org/postman/FF6C37' },
