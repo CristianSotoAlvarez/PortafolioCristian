@@ -59,7 +59,7 @@ export default function Contact() {
 
         <div className="contact-grid">
           <div className="contact-info">
-            <h3>¿Tenés un proyecto en mente?</h3>
+            <h3>¿Tienes un proyecto en mente?</h3>
             <p>
               Estoy abierto a nuevas oportunidades, colaboraciones o simplemente charlar
               sobre tecnología. No dudes en escribirme.
