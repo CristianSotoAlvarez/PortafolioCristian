@@ -15,8 +15,8 @@ const PROJECTS = [
       en: 'Civil Registry System',
     },
     description: {
-      es: 'Sistema de Información Administrativa (SIA) para la gestión de registros civiles, desarrollado en Java con interfaz gráfica Swing. Permite registrar, consultar y administrar datos de personas con persistencia en archivos CSV. Proyecto académico grupal desarrollado en NetBeans con Apache Ant.',
-      en: 'Administrative Information System (SIA) for civil registry management, built in Java with a Swing GUI. Enables registering, querying and managing personal records with CSV-based data persistence. Academic group project developed in NetBeans with Apache Ant.',
+      es: 'Sistema de Información Administrativa (SIA) para gestión de registros civiles en Java Swing. Permite registrar, consultar y administrar datos de personas con persistencia en CSV.',
+      en: 'Administrative Information System (SIA) for civil registry management in Java Swing. Enables registering, querying and managing personal records with CSV-based data persistence.',
     },
     tags: ['Java', 'Java Swing', 'CSV', 'Apache Ant', 'NetBeans'],
   },
@@ -58,69 +58,59 @@ function ChevronRight() {
 
 function ProjectImages({ images }) {
   const [imgIndex, setImgIndex] = useState(0)
-
   if (!images || images.length === 0) return null
 
-  const prevImg = (e) => {
-    e.stopPropagation()
-    setImgIndex(i => (i - 1 + images.length) % images.length)
-  }
-  const nextImg = (e) => {
-    e.stopPropagation()
-    setImgIndex(i => (i + 1) % images.length)
-  }
+  const prevImg = (e) => { e.stopPropagation(); setImgIndex(i => (i - 1 + images.length) % images.length) }
+  const nextImg = (e) => { e.stopPropagation(); setImgIndex(i => (i + 1) % images.length) }
 
   return (
     <div className="project-images">
-      <div className="project-images-track">
-        <img
-          key={imgIndex}
-          src={images[imgIndex]}
-          alt={`Screenshot ${imgIndex + 1}`}
-          className="project-screenshot"
-        />
-        {images.length > 1 && (
-          <>
-            <button className="project-img-btn project-img-prev" onClick={prevImg} aria-label="Imagen anterior">
-              <ChevronLeft />
-            </button>
-            <button className="project-img-btn project-img-next" onClick={nextImg} aria-label="Imagen siguiente">
-              <ChevronRight />
-            </button>
-            <div className="project-img-dots">
-              {images.map((_, i) => (
-                <span
-                  key={i}
-                  className={`project-img-dot${i === imgIndex ? ' active' : ''}`}
-                  onClick={e => { e.stopPropagation(); setImgIndex(i) }}
-                />
-              ))}
-            </div>
-          </>
-        )}
-      </div>
+      <img key={imgIndex} src={images[imgIndex]} alt={`Screenshot ${imgIndex + 1}`} className="project-screenshot" />
+      {images.length > 1 && (
+        <>
+          <button className="project-img-btn project-img-prev" onClick={prevImg} aria-label="Anterior"><ChevronLeft /></button>
+          <button className="project-img-btn project-img-next" onClick={nextImg} aria-label="Siguiente"><ChevronRight /></button>
+          <div className="project-img-dots">
+            {images.map((_, i) => (
+              <span key={i} className={`project-img-dot${i === imgIndex ? ' active' : ''}`} onClick={e => { e.stopPropagation(); setImgIndex(i) }} />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   )
 }
+
+const GAP = 24
 
 export default function Projects({ lang }) {
   const tr = t[lang].projects
   const [current, setCurrent] = useState(0)
   const [paused, setPaused] = useState(false)
+  const trackRef = useRef()
   const total = PROJECTS.length
 
   const next = () => setCurrent(i => (i + 1) % total)
   const prev = () => setCurrent(i => (i - 1 + total) % total)
 
+  // Slide the track so the active card is centered
+  useEffect(() => {
+    const track = trackRef.current
+    if (!track) return
+    const slide = track.children[current]
+    if (!slide) return
+    const parentWidth = track.parentElement.offsetWidth
+    const slideWidth = slide.offsetWidth
+    const offset = current * (slideWidth + GAP) - (parentWidth - slideWidth) / 2
+    track.style.transform = `translateX(${-offset}px)`
+  }, [current])
+
+  // Auto-advance
   useEffect(() => {
     if (paused || total <= 1) return
     const id = setInterval(next, 5000)
     return () => clearInterval(id)
   }, [paused, total, current])
-
-  const project = PROJECTS[current]
-  const name = project.name[lang] ?? project.name.es
-  const description = project.description[lang] ?? project.description.es
 
   return (
     <section className="projects section" id="projects">
@@ -128,55 +118,68 @@ export default function Projects({ lang }) {
         <h2 className="section-title">{tr.title}</h2>
         <p className="section-subtitle">{tr.subtitle}</p>
 
-        <div
-          className="carousel"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
-          {total > 1 && (
-            <button className="carousel-btn carousel-btn-prev" onClick={prev} aria-label="Anterior">
-              <ChevronLeft />
-            </button>
-          )}
+        <div className="carousel-wrapper" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+          {/* Prev button */}
+          <button
+            className="carousel-btn carousel-btn-prev"
+            onClick={prev}
+            aria-label="Anterior"
+            style={{ visibility: total > 1 ? 'visible' : 'hidden' }}
+          >
+            <ChevronLeft />
+          </button>
 
-          <div className="carousel-window">
-            <div className="project-card carousel-card" key={current}>
-              <ProjectImages images={project.images} />
-
-              <div className="project-card-top">
-                <span className="project-icon">{project.icon}</span>
-                <div className="project-links">
-                  {project.github && (
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" title={tr.codeLabel}>
-                      <GitHubIcon />
-                    </a>
-                  )}
-                  {project.demo && (
-                    <a href={project.demo} target="_blank" rel="noopener noreferrer" title={tr.demoLabel}>
-                      <ExternalLinkIcon />
-                    </a>
-                  )}
-                </div>
-              </div>
-
-              <h3 className="project-name">{name}</h3>
-              <p className="project-description">{description}</p>
-
-              <div className="project-tags">
-                {project.tags.map(tag => (
-                  <span className="project-tag" key={tag}>{tag}</span>
-                ))}
-              </div>
+          {/* Sliding track */}
+          <div className="carousel-viewport">
+            <div className="carousel-track" ref={trackRef} style={{ gap: GAP }}>
+              {PROJECTS.map((project, i) => {
+                const name = project.name[lang] ?? project.name.es
+                const description = project.description[lang] ?? project.description.es
+                return (
+                  <div key={i} className={`project-card carousel-slide${i === current ? ' active' : ''}`}>
+                    <ProjectImages images={project.images} />
+                    <div className="project-card-body">
+                      <div className="project-card-top">
+                        <span className="project-icon">{project.icon}</span>
+                        <div className="project-links">
+                          {project.github && (
+                            <a href={project.github} target="_blank" rel="noopener noreferrer" title={tr.codeLabel}>
+                              <GitHubIcon />
+                            </a>
+                          )}
+                          {project.demo && (
+                            <a href={project.demo} target="_blank" rel="noopener noreferrer" title={tr.demoLabel}>
+                              <ExternalLinkIcon />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                      <h3 className="project-name">{name}</h3>
+                      <p className="project-description">{description}</p>
+                      <div className="project-tags">
+                        {project.tags.map(tag => (
+                          <span className="project-tag" key={tag}>{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           </div>
 
-          {total > 1 && (
-            <button className="carousel-btn carousel-btn-next" onClick={next} aria-label="Siguiente">
-              <ChevronRight />
-            </button>
-          )}
+          {/* Next button */}
+          <button
+            className="carousel-btn carousel-btn-next"
+            onClick={next}
+            aria-label="Siguiente"
+            style={{ visibility: total > 1 ? 'visible' : 'hidden' }}
+          >
+            <ChevronRight />
+          </button>
         </div>
 
+        {/* Dots */}
         {total > 1 && (
           <div className="carousel-dots">
             {PROJECTS.map((_, i) => (
@@ -188,10 +191,6 @@ export default function Projects({ lang }) {
               />
             ))}
           </div>
-        )}
-
-        {total > 1 && (
-          <p className="carousel-counter">{current + 1} / {total}</p>
         )}
       </div>
     </section>

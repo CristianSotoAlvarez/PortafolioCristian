@@ -755,23 +755,28 @@ img {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 28px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  transition: border-color var(--transition), transform var(--transition-slow), box-shadow var(--transition-slow);
+  transition: border-color var(--transition), box-shadow var(--transition-slow);
 }
 
-.project-card:hover {
+.project-card.active:hover {
   border-color: var(--border-hover);
-  transform: translateY(-5px);
   box-shadow: var(--shadow-orange);
+}
+
+.project-card-body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .project-card-top {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .project-icon {
@@ -807,10 +812,13 @@ img {
 }
 
 .project-description {
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   color: var(--muted);
-  line-height: 1.75;
-  flex: 1;
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .project-tags {
@@ -831,26 +839,22 @@ img {
 
 /* ===================== PROJECT IMAGES ===================== */
 .project-images {
-  margin: -28px -28px 20px -28px;
-  border-radius: var(--radius) var(--radius) 0 0;
-  overflow: hidden;
-}
-
-.project-images-track {
   position: relative;
+  overflow: hidden;
+  border-radius: var(--radius) var(--radius) 0 0;
 }
 
 .project-screenshot {
   width: 100%;
-  height: 240px;
-  object-fit: contain;
+  height: 190px;
+  object-fit: cover;
+  object-position: top center;
   display: block;
-  background: #1a1a2e;
-  animation: carouselFadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-[data-theme="light"] .project-screenshot {
-  background: #e8e8f0;
+.carousel-slide.active .project-screenshot:hover {
+  transform: scale(1.04);
 }
 
 .project-img-btn {
@@ -923,37 +927,42 @@ img {
 }
 
 /* ===================== CAROUSEL ===================== */
-.carousel {
-  position: relative;
+.carousel-wrapper {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 
-.carousel-window {
+.carousel-viewport {
   flex: 1;
   overflow: hidden;
+  padding: 12px 0; /* space for card shadow */
 }
 
-.carousel-card {
-  animation: carouselFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+.carousel-track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 
-@keyframes carouselFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.carousel-slide {
+  flex: 0 0 340px;
+  opacity: 0.45;
+  transform: scale(0.94);
+  transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1), transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
 }
 
 .carousel-btn {
   flex-shrink: 0;
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   border-radius: 10px;
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -972,41 +981,32 @@ img {
 }
 
 .carousel-btn svg {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
 }
 
 .carousel-dots {
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin-top: 24px;
+  margin-top: 20px;
 }
 
 .carousel-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: var(--border);
   border: none;
   cursor: pointer;
   padding: 0;
-  transition: background var(--transition), transform var(--transition), width var(--transition);
+  transition: background var(--transition), width var(--transition);
 }
 
 .carousel-dot.active {
   background: var(--orange);
-  width: 24px;
+  width: 22px;
   border-radius: 4px;
-}
-
-.carousel-counter {
-  text-align: center;
-  margin-top: 12px;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--muted);
-  opacity: 0.5;
 }
 
 /* ===================== CONTACT ===================== */
