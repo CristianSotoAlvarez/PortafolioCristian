@@ -1,6 +1,22 @@
+import { useState, useEffect, useRef } from 'react'
 import t from '../i18n'
 
-const PROJECTS = []
+const PROJECTS = [
+  {
+    icon: '🏛️',
+    github: 'https://github.com/CristianSotoAlvarez/CristianSotoAlvarez-Proyecto_SIA_Registro_CivilFinal',
+    demo: null,
+    name: {
+      es: 'Sistema de Registro Civil',
+      en: 'Civil Registry System',
+    },
+    description: {
+      es: 'Sistema de Información Administrativa (SIA) para la gestión de registros civiles, desarrollado en Java con interfaz gráfica Swing. Permite registrar, consultar y administrar datos de personas con persistencia en archivos CSV. Proyecto académico grupal desarrollado en NetBeans con Apache Ant.',
+      en: 'Administrative Information System (SIA) for civil registry management, built in Java with a Swing GUI. Enables registering, querying and managing personal records with CSV-based data persistence. Academic group project developed in NetBeans with Apache Ant.',
+    },
+    tags: ['Java', 'Java Swing', 'CSV', 'Apache Ant', 'NetBeans'],
+  },
+]
 
 function GitHubIcon() {
   return (
@@ -20,8 +36,41 @@ function ExternalLinkIcon() {
   )
 }
 
+function ChevronLeft() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="15 18 9 12 15 6" />
+    </svg>
+  )
+}
+
+function ChevronRight() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="9 18 15 12 9 6" />
+    </svg>
+  )
+}
+
 export default function Projects({ lang }) {
   const tr = t[lang].projects
+  const [current, setCurrent] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const intervalRef = useRef(null)
+  const total = PROJECTS.length
+
+  const next = () => setCurrent(i => (i + 1) % total)
+  const prev = () => setCurrent(i => (i - 1 + total) % total)
+
+  useEffect(() => {
+    if (paused || total <= 1) return
+    intervalRef.current = setInterval(next, 5000)
+    return () => clearInterval(intervalRef.current)
+  }, [paused, total, current])
+
+  const project = PROJECTS[current]
+  const name = project.name[lang] ?? project.name.es
+  const description = project.description[lang] ?? project.description.es
 
   return (
     <section className="projects section" id="projects">
@@ -29,40 +78,68 @@ export default function Projects({ lang }) {
         <h2 className="section-title">{tr.title}</h2>
         <p className="section-subtitle">{tr.subtitle}</p>
 
-        {PROJECTS.length === 0 ? (
-          <div className="projects-placeholder">
-            <span style={{ fontSize: '3rem' }}>🚧</span>
-            <p>{tr.empty}</p>
-          </div>
-        ) : (
-          <div className="projects-grid">
-            {PROJECTS.map(project => (
-              <div className="project-card" key={project.name}>
-                <div className="project-card-top">
-                  <span className="project-icon">{project.icon}</span>
-                  <div className="project-links">
-                    {project.github && (
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" title={tr.codeLabel}>
-                        <GitHubIcon />
-                      </a>
-                    )}
-                    {project.demo && (
-                      <a href={project.demo} target="_blank" rel="noopener noreferrer" title={tr.demoLabel}>
-                        <ExternalLinkIcon />
-                      </a>
-                    )}
-                  </div>
-                </div>
-                <h3 className="project-name">{project.name}</h3>
-                <p className="project-description">{project.description}</p>
-                <div className="project-tags">
-                  {project.tags.map(tag => (
-                    <span className="project-tag" key={tag}>{tag}</span>
-                  ))}
+        <div
+          className="carousel"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          {total > 1 && (
+            <button className="carousel-btn carousel-btn-prev" onClick={prev} aria-label="Anterior">
+              <ChevronLeft />
+            </button>
+          )}
+
+          <div className="carousel-window">
+            <div className="project-card carousel-card" key={current}>
+              <div className="project-card-top">
+                <span className="project-icon">{project.icon}</span>
+                <div className="project-links">
+                  {project.github && (
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" title={tr.codeLabel}>
+                      <GitHubIcon />
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a href={project.demo} target="_blank" rel="noopener noreferrer" title={tr.demoLabel}>
+                      <ExternalLinkIcon />
+                    </a>
+                  )}
                 </div>
               </div>
+
+              <h3 className="project-name">{name}</h3>
+              <p className="project-description">{description}</p>
+
+              <div className="project-tags">
+                {project.tags.map(tag => (
+                  <span className="project-tag" key={tag}>{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {total > 1 && (
+            <button className="carousel-btn carousel-btn-next" onClick={next} aria-label="Siguiente">
+              <ChevronRight />
+            </button>
+          )}
+        </div>
+
+        {total > 1 && (
+          <div className="carousel-dots">
+            {PROJECTS.map((_, i) => (
+              <button
+                key={i}
+                className={`carousel-dot${i === current ? ' active' : ''}`}
+                onClick={() => setCurrent(i)}
+                aria-label={`Proyecto ${i + 1}`}
+              />
             ))}
           </div>
+        )}
+
+        {total > 1 && (
+          <p className="carousel-counter">{current + 1} / {total}</p>
         )}
       </div>
     </section>
