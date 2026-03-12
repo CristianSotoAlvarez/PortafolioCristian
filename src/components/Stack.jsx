@@ -36,6 +36,7 @@ const STACK_ITEMS = [
       { name: 'Jira',           icon: 'https://cdn.simpleicons.org/jira/0052CC' },
       { name: 'Trello',         icon: 'https://cdn.simpleicons.org/trello/0052CC' },
       { name: 'Power Platform', icon: '/icons/powerplatform.png' },
+      { name: 'Dialogflow CX', icon: 'https://cdn.simpleicons.org/dialogflow/FF9800' },
     ],
   },
 ]

@@ -43,14 +43,7 @@ const PROJECTS = [
     icon: '🤖',
     github: 'https://github.com/CristianSotoAlvarez/dialogflow-cx-webchat',
     demo: null,
-    images: [
-      '/projects/chatbot-1.jpg',
-      '/projects/chatbot-2.jpg',
-    ],
-    imageOptions: [
-      { fit: 'contain', position: 'center' },
-      { fit: 'cover', position: 'top' },
-    ],
+    images: ['/projects/chatbot-1.jpg'],
     name: {
       es: 'FINRA Bot — Chatbot Orientativo PUCV',
       en: 'FINRA Bot — PUCV Orientation Chatbot',
@@ -60,6 +53,21 @@ const PROJECTS = [
       en: 'Orientation chatbot for the PUCV Engineering Faculty, integrated with Dialogflow CX. Guides students inside the building via text or voice, with TTS support and voice recognition in Chrome.',
     },
     tags: ['Dialogflow CX', 'JavaScript', 'HTML', 'CSS', 'TTS', 'Web Speech API'],
+  },
+  {
+    icon: '⚙️',
+    github: 'https://github.com/CristianSotoAlvarez/Proyecto_2_Estructuras_MercaditoLibre',
+    demo: null,
+    images: [],
+    name: {
+      es: 'MercaditoLibre — Inventario en C',
+      en: 'MercaditoLibre — C Inventory System',
+    },
+    description: {
+      es: 'Sistema de gestión de inventario para un marketplace, desarrollado en C. Implementa árboles binarios de búsqueda (BST) para gestión de bodegas, listas doblemente enlazadas para historial de transacciones, alertas de bajo stock y reportes de ganancias/pérdidas.',
+      en: 'Inventory management system for a marketplace, built in C. Implements Binary Search Trees (BST) for warehouse management, doubly linked lists for transaction history, low-stock alerts and profit/loss reporting.',
+    },
+    tags: ['C', 'BST', 'Linked Lists', 'Data Structures', 'CLI'],
   },
 ]
 
