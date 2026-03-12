@@ -829,6 +829,79 @@ img {
   border-radius: 4px;
 }
 
+/* ===================== PROJECT IMAGES ===================== */
+.project-images {
+  margin: -28px -28px 20px -28px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  overflow: hidden;
+}
+
+.project-images-track {
+  position: relative;
+}
+
+.project-screenshot {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  animation: carouselFadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.project-img-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--transition);
+  backdrop-filter: blur(4px);
+}
+
+.project-img-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.project-img-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.project-img-prev { left: 10px; }
+.project-img-next { right: 10px; }
+
+.project-img-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+}
+
+.project-img-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: background var(--transition), width var(--transition);
+}
+
+.project-img-dot.active {
+  background: #fff;
+  width: 16px;
+  border-radius: 3px;
+}
+
 .projects-placeholder {
   text-align: center;
   padding: 80px 24px;

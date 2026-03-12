@@ -6,6 +6,10 @@ const PROJECTS = [
     icon: '🏛️',
     github: 'https://github.com/CristianSotoAlvarez/CristianSotoAlvarez-Proyecto_SIA_Registro_CivilFinal',
     demo: null,
+    images: [
+      '/projects/registro-civil-1.png',
+      '/projects/registro-civil-2.png',
+    ],
     name: {
       es: 'Sistema de Registro Civil',
       en: 'Civil Registry System',
@@ -52,11 +56,57 @@ function ChevronRight() {
   )
 }
 
+function ProjectImages({ images }) {
+  const [imgIndex, setImgIndex] = useState(0)
+
+  if (!images || images.length === 0) return null
+
+  const prevImg = (e) => {
+    e.stopPropagation()
+    setImgIndex(i => (i - 1 + images.length) % images.length)
+  }
+  const nextImg = (e) => {
+    e.stopPropagation()
+    setImgIndex(i => (i + 1) % images.length)
+  }
+
+  return (
+    <div className="project-images">
+      <div className="project-images-track">
+        <img
+          key={imgIndex}
+          src={images[imgIndex]}
+          alt={`Screenshot ${imgIndex + 1}`}
+          className="project-screenshot"
+        />
+        {images.length > 1 && (
+          <>
+            <button className="project-img-btn project-img-prev" onClick={prevImg} aria-label="Imagen anterior">
+              <ChevronLeft />
+            </button>
+            <button className="project-img-btn project-img-next" onClick={nextImg} aria-label="Imagen siguiente">
+              <ChevronRight />
+            </button>
+            <div className="project-img-dots">
+              {images.map((_, i) => (
+                <span
+                  key={i}
+                  className={`project-img-dot${i === imgIndex ? ' active' : ''}`}
+                  onClick={e => { e.stopPropagation(); setImgIndex(i) }}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  )
+}
+
 export default function Projects({ lang }) {
   const tr = t[lang].projects
   const [current, setCurrent] = useState(0)
   const [paused, setPaused] = useState(false)
-  const intervalRef = useRef(null)
   const total = PROJECTS.length
 
   const next = () => setCurrent(i => (i + 1) % total)
@@ -64,8 +114,8 @@ export default function Projects({ lang }) {
 
   useEffect(() => {
     if (paused || total <= 1) return
-    intervalRef.current = setInterval(next, 5000)
-    return () => clearInterval(intervalRef.current)
+    const id = setInterval(next, 5000)
+    return () => clearInterval(id)
   }, [paused, total, current])
 
   const project = PROJECTS[current]
@@ -91,6 +141,8 @@ export default function Projects({ lang }) {
 
           <div className="carousel-window">
             <div className="project-card carousel-card" key={current}>
+              <ProjectImages images={project.images} />
+
               <div className="project-card-top">
                 <span className="project-icon">{project.icon}</span>
                 <div className="project-links">
