@@ -105,7 +105,6 @@ function ProjectImages({ images }) {
           alt={`Screenshot ${imgIndex + 1}`}
           className="project-screenshot"
           onClick={() => setLightbox(true)}
-          title="Click para ampliar"
         />
         {images.length > 1 && (
           <>
