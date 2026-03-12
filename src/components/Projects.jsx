@@ -20,6 +20,21 @@ const PROJECTS = [
     },
     tags: ['Java', 'Java Swing', 'CSV', 'Apache Ant', 'NetBeans'],
   },
+  {
+    icon: '🍽️',
+    github: 'https://github.com/AlvaroCG20/Proyecto-Web-DiauloFood',
+    demo: null,
+    images: [],
+    name: {
+      es: 'DiauloFood — Gestión de Restaurante',
+      en: 'DiauloFood — Restaurant Manager',
+    },
+    description: {
+      es: 'Aplicación web para gestión integral de restaurantes con control de roles (administrador y garzón), manejo de mesas en tiempo real, catálogo de productos con CRUD y seguimiento de pedidos por mesa.',
+      en: 'Web app for full restaurant management with role-based access (admin and waiter), real-time table status tracking, product catalog with CRUD and per-table order tracking.',
+    },
+    tags: ['Ionic', 'Angular', 'TypeScript', 'SCSS'],
+  },
 ]
 
 function GitHubIcon() {
