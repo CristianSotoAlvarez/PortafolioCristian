@@ -43,6 +43,7 @@ const PROJECTS = [
     icon: '🤖',
     github: 'https://github.com/CristianSotoAlvarez/dialogflow-cx-webchat',
     demo: null,
+    imageFit: 'contain',
     images: [
       '/projects/chatbot-1.jpg',
       '/projects/chatbot-2.jpg',
@@ -93,7 +94,7 @@ function ChevronRight() {
   )
 }
 
-function ProjectImages({ images }) {
+function ProjectImages({ images, imageFit }) {
   const [imgIndex, setImgIndex] = useState(0)
   if (!images || images.length === 0) return null
 
@@ -102,7 +103,13 @@ function ProjectImages({ images }) {
 
   return (
     <div className="project-images">
-      <img key={imgIndex} src={images[imgIndex]} alt={`Screenshot ${imgIndex + 1}`} className="project-screenshot" />
+      <img
+        key={imgIndex}
+        src={images[imgIndex]}
+        alt={`Screenshot ${imgIndex + 1}`}
+        className="project-screenshot"
+        style={imageFit ? { objectFit: imageFit, objectPosition: 'center' } : undefined}
+      />
       {images.length > 1 && (
         <>
           <button className="project-img-btn project-img-prev" onClick={prevImg} aria-label="Anterior"><ChevronLeft /></button>
@@ -174,7 +181,7 @@ export default function Projects({ lang }) {
                 const description = project.description[lang] ?? project.description.es
                 return (
                   <div key={i} className={`project-card carousel-slide${i === current ? ' active' : ''}`}>
-                    <ProjectImages images={project.images} />
+                    <ProjectImages images={project.images} imageFit={project.imageFit} />
                     <div className="project-card-body">
                       <div className="project-card-top">
                         <span className="project-icon">{project.icon}</span>
