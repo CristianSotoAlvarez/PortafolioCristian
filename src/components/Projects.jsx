@@ -39,6 +39,24 @@ const PROJECTS = [
     },
     tags: ['Ionic', 'Angular', 'TypeScript', 'SCSS'],
   },
+  {
+    icon: '🤖',
+    github: 'https://github.com/CristianSotoAlvarez/dialogflow-cx-webchat',
+    demo: null,
+    images: [
+      '/projects/chatbot-1.jpg',
+      '/projects/chatbot-2.jpg',
+    ],
+    name: {
+      es: 'FINRA Bot — Chatbot Orientativo PUCV',
+      en: 'FINRA Bot — PUCV Orientation Chatbot',
+    },
+    description: {
+      es: 'Chatbot orientativo para la Facultad de Ingeniería de la PUCV, integrado con Dialogflow CX. Permite guiar a estudiantes dentro del edificio mediante texto o voz, con soporte TTS y reconocimiento de voz en Chrome.',
+      en: 'Orientation chatbot for the PUCV Engineering Faculty, integrated with Dialogflow CX. Guides students inside the building via text or voice, with TTS support and voice recognition in Chrome.',
+    },
+    tags: ['Dialogflow CX', 'JavaScript', 'HTML', 'CSS', 'TTS', 'Web Speech API'],
+  },
 ]
 
 function GitHubIcon() {
