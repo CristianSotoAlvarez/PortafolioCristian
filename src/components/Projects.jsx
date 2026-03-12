@@ -24,7 +24,11 @@ const PROJECTS = [
     icon: '🍽️',
     github: 'https://github.com/AlvaroCG20/Proyecto-Web-DiauloFood',
     demo: null,
-    images: [],
+    images: [
+      '/projects/diaulo-1.jpg',
+      '/projects/diaulo-2.jpg',
+      '/projects/diaulo-3.jpg',
+    ],
     name: {
       es: 'DiauloFood — Gestión de Restaurante',
       en: 'DiauloFood — Restaurant Manager',
