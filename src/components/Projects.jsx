@@ -56,28 +56,72 @@ function ChevronRight() {
   )
 }
 
+function Lightbox({ images, startIndex, onClose }) {
+  const [idx, setIdx] = useState(startIndex)
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'ArrowRight') setIdx(i => (i + 1) % images.length)
+      if (e.key === 'ArrowLeft')  setIdx(i => (i - 1 + images.length) % images.length)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [images.length, onClose])
+
+  return (
+    <div className="lightbox-overlay" onClick={onClose}>
+      <div className="lightbox-content" onClick={e => e.stopPropagation()}>
+        <button className="lightbox-close" onClick={onClose} aria-label="Cerrar">✕</button>
+        <img src={images[idx]} alt={`Screenshot ${idx + 1}`} className="lightbox-img" />
+        {images.length > 1 && (
+          <>
+            <button className="lightbox-nav lightbox-prev" onClick={() => setIdx(i => (i - 1 + images.length) % images.length)}><ChevronLeft /></button>
+            <button className="lightbox-nav lightbox-next" onClick={() => setIdx(i => (i + 1) % images.length)}><ChevronRight /></button>
+            <div className="lightbox-dots">
+              {images.map((_, i) => <span key={i} className={`project-img-dot${i === idx ? ' active' : ''}`} onClick={() => setIdx(i)} />)}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  )
+}
+
 function ProjectImages({ images }) {
   const [imgIndex, setImgIndex] = useState(0)
+  const [lightbox, setLightbox] = useState(false)
   if (!images || images.length === 0) return null
 
   const prevImg = (e) => { e.stopPropagation(); setImgIndex(i => (i - 1 + images.length) % images.length) }
   const nextImg = (e) => { e.stopPropagation(); setImgIndex(i => (i + 1) % images.length) }
 
   return (
-    <div className="project-images">
-      <img key={imgIndex} src={images[imgIndex]} alt={`Screenshot ${imgIndex + 1}`} className="project-screenshot" />
-      {images.length > 1 && (
-        <>
-          <button className="project-img-btn project-img-prev" onClick={prevImg} aria-label="Anterior"><ChevronLeft /></button>
-          <button className="project-img-btn project-img-next" onClick={nextImg} aria-label="Siguiente"><ChevronRight /></button>
-          <div className="project-img-dots">
-            {images.map((_, i) => (
-              <span key={i} className={`project-img-dot${i === imgIndex ? ' active' : ''}`} onClick={e => { e.stopPropagation(); setImgIndex(i) }} />
-            ))}
-          </div>
-        </>
-      )}
-    </div>
+    <>
+      <div className="project-images">
+        <img
+          key={imgIndex}
+          src={images[imgIndex]}
+          alt={`Screenshot ${imgIndex + 1}`}
+          className="project-screenshot"
+          onClick={() => setLightbox(true)}
+          title="Click para ampliar"
+        />
+        <div className="project-img-zoom-hint">🔍</div>
+        {images.length > 1 && (
+          <>
+            <button className="project-img-btn project-img-prev" onClick={prevImg} aria-label="Anterior"><ChevronLeft /></button>
+            <button className="project-img-btn project-img-next" onClick={nextImg} aria-label="Siguiente"><ChevronRight /></button>
+            <div className="project-img-dots">
+              {images.map((_, i) => (
+                <span key={i} className={`project-img-dot${i === imgIndex ? ' active' : ''}`} onClick={e => { e.stopPropagation(); setImgIndex(i) }} />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+      {lightbox && <Lightbox images={images} startIndex={imgIndex} onClose={() => setLightbox(false)} />}
+    </>
   )
 }
 
