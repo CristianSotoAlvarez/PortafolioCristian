@@ -107,7 +107,6 @@ function ProjectImages({ images }) {
           onClick={() => setLightbox(true)}
           title="Click para ampliar"
         />
-        <div className="project-img-zoom-hint">🔍</div>
         {images.length > 1 && (
           <>
             <button className="project-img-btn project-img-prev" onClick={prevImg} aria-label="Anterior"><ChevronLeft /></button>
