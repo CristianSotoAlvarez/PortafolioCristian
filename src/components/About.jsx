@@ -31,7 +31,9 @@ export default function About({ lang }) {
 
             <div className="about-card">
               <div className="about-card-header">
-                <div className="about-card-icon">🎓</div>
+                <div className="about-card-icon">
+                  <img src="/icons/PUCV_Escudo2016.svg" alt="PUCV" style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
+                </div>
                 <div>
                   <div className="about-card-title">{tr.cardTitle}</div>
                   <div className="about-card-subtitle">{tr.cardSubtitle}</div>
