@@ -54,21 +54,6 @@ const PROJECTS = [
     },
     tags: ['Dialogflow CX', 'JavaScript', 'HTML', 'CSS', 'TTS', 'Web Speech API'],
   },
-  {
-    icon: '⚙️',
-    github: 'https://github.com/CristianSotoAlvarez/Proyecto_2_Estructuras_MercaditoLibre',
-    demo: null,
-    images: [],
-    name: {
-      es: 'MercaditoLibre — Inventario en C',
-      en: 'MercaditoLibre — C Inventory System',
-    },
-    description: {
-      es: 'Sistema de gestión de inventario para un marketplace, desarrollado en C. Implementa árboles binarios de búsqueda (BST) para gestión de bodegas, listas doblemente enlazadas para historial de transacciones, alertas de bajo stock y reportes de ganancias/pérdidas.',
-      en: 'Inventory management system for a marketplace, built in C. Implements Binary Search Trees (BST) for warehouse management, doubly linked lists for transaction history, low-stock alerts and profit/loss reporting.',
-    },
-    tags: ['C', 'BST', 'Linked Lists', 'Data Structures', 'CLI'],
-  },
 ]
 
 function GitHubIcon() {
