@@ -43,10 +43,13 @@ const PROJECTS = [
     icon: '🤖',
     github: 'https://github.com/CristianSotoAlvarez/dialogflow-cx-webchat',
     demo: null,
-    imageFit: 'contain',
     images: [
       '/projects/chatbot-1.jpg',
       '/projects/chatbot-2.jpg',
+    ],
+    imageOptions: [
+      { fit: 'contain', position: 'center' },
+      { fit: 'cover', position: 'top' },
     ],
     name: {
       es: 'FINRA Bot — Chatbot Orientativo PUCV',
@@ -94,12 +97,15 @@ function ChevronRight() {
   )
 }
 
-function ProjectImages({ images, imageFit }) {
+function ProjectImages({ images, imageOptions }) {
   const [imgIndex, setImgIndex] = useState(0)
   if (!images || images.length === 0) return null
 
   const prevImg = (e) => { e.stopPropagation(); setImgIndex(i => (i - 1 + images.length) % images.length) }
   const nextImg = (e) => { e.stopPropagation(); setImgIndex(i => (i + 1) % images.length) }
+
+  const opt = imageOptions?.[imgIndex]
+  const imgStyle = opt ? { objectFit: opt.fit, objectPosition: opt.position } : undefined
 
   return (
     <div className="project-images">
@@ -108,7 +114,7 @@ function ProjectImages({ images, imageFit }) {
         src={images[imgIndex]}
         alt={`Screenshot ${imgIndex + 1}`}
         className="project-screenshot"
-        style={imageFit ? { objectFit: imageFit, objectPosition: 'center' } : undefined}
+        style={imgStyle}
       />
       {images.length > 1 && (
         <>
@@ -130,12 +136,20 @@ const GAP = 24
 export default function Projects({ lang }) {
   const tr = t[lang].projects
   const [current, setCurrent] = useState(0)
-  const [paused, setPaused] = useState(false)
+  const [clickPaused, setClickPaused] = useState(false)
+  const clickTimerRef = useRef()
   const trackRef = useRef()
   const total = PROJECTS.length
 
   const next = () => setCurrent(i => (i + 1) % total)
   const prev = () => setCurrent(i => (i - 1 + total) % total)
+
+  // Pause on click, resume after 8s
+  const handleCardClick = () => {
+    setClickPaused(true)
+    clearTimeout(clickTimerRef.current)
+    clickTimerRef.current = setTimeout(() => setClickPaused(false), 8000)
+  }
 
   // Slide the track so the active card is centered
   useEffect(() => {
@@ -151,10 +165,10 @@ export default function Projects({ lang }) {
 
   // Auto-advance
   useEffect(() => {
-    if (paused || total <= 1) return
-    const id = setInterval(next, 5000)
+    if (clickPaused || total <= 1) return
+    const id = setInterval(next, 4000)
     return () => clearInterval(id)
-  }, [paused, total, current])
+  }, [clickPaused, total, current])
 
   return (
     <section className="projects section" id="projects">
@@ -162,7 +176,7 @@ export default function Projects({ lang }) {
         <h2 className="section-title">{tr.title}</h2>
         <p className="section-subtitle">{tr.subtitle}</p>
 
-        <div className="carousel-wrapper" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+        <div className="carousel-wrapper">
           {/* Prev button */}
           <button
             className="carousel-btn carousel-btn-prev"
@@ -180,8 +194,8 @@ export default function Projects({ lang }) {
                 const name = project.name[lang] ?? project.name.es
                 const description = project.description[lang] ?? project.description.es
                 return (
-                  <div key={i} className={`project-card carousel-slide${i === current ? ' active' : ''}`}>
-                    <ProjectImages images={project.images} imageFit={project.imageFit} />
+                  <div key={i} className={`project-card carousel-slide${i === current ? ' active' : ''}`} onClick={handleCardClick}>
+                    <ProjectImages images={project.images} imageOptions={project.imageOptions} />
                     <div className="project-card-body">
                       <div className="project-card-top">
                         <span className="project-icon">{project.icon}</span>
