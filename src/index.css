@@ -842,10 +842,15 @@ img {
 
 .project-screenshot {
   width: 100%;
-  height: 220px;
-  object-fit: cover;
+  height: 240px;
+  object-fit: contain;
   display: block;
+  background: #1a1a2e;
   animation: carouselFadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+[data-theme="light"] .project-screenshot {
+  background: #e8e8f0;
 }
 
 .project-img-btn {
