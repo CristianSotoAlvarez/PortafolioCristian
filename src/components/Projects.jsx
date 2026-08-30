@@ -6,6 +6,7 @@ const PROJECTS = [
     icon: '🚛',
     github: 'https://github.com/CristianSotoAlvarez/AvanceSeminario---Cristian-Soto',
     demo: null,
+    featured: true,
     images: [
       '/projects/jat-1.jpg',
       '/projects/jat-2.jpg',
@@ -13,13 +14,14 @@ const PROJECTS = [
       '/projects/jat-4.jpg',
       '/projects/jat-5.jpg',
     ],
+    eyebrow: { es: 'Seminario de título · 2026', en: 'Final-year thesis · 2026' },
     name: {
       es: 'JAT (Justo a Tiempo) — Trazabilidad de despacho',
       en: 'JAT (Just In Time) — Dispatch Traceability',
     },
     description: {
-      es: 'Seminario de título. Sistema web de trazabilidad y KPIs para el despacho de una planta agroindustrial, con seguimiento en tiempo real de camiones, andenes y pallets, y dos modelos predictivos de árbol de decisión integrados en la API.',
-      en: 'Final-year thesis. Web system for dispatch traceability and KPIs at an agro-industrial plant, with real-time tracking of trucks, docks and pallets, and two decision-tree models served from the API.',
+      es: 'Sistema con el que la jefatura de logística de una planta de alimentos ve en todo momento dónde está cada camión, qué andén ocupa y cuánto falta para cargarlo. Registra quién hizo cada paso y a qué hora, entrega indicadores de gestión y anticipa qué camiones se van a atrasar a partir del historial.',
+      en: 'System that lets the logistics management of a food plant see, at any moment, where every truck is, which dock it occupies and how much is left to load. It records who did each step and when, delivers management indicators and predicts which trucks will run late based on history.',
     },
     tags: ['NestJS', 'Next.js', 'Prisma', 'PostgreSQL', 'Socket.IO', 'Docker', 'Python'],
   },
@@ -33,33 +35,32 @@ const PROJECTS = [
       '/projects/crisfness-3.jpg',
       '/projects/crisfness-4.jpg',
     ],
+    eyebrow: { es: 'Cliente freelance · 2026', en: 'Freelance client · 2026' },
     name: {
       es: 'Cris Fness — Sitio para asesoría fitness',
       en: 'Cris Fness — Online Fitness Coaching Site',
     },
     description: {
-      es: 'Proyecto freelance para un preparador físico. Sitio construido en Astro y desplegado en Vercel, con formulario de captación de clientes validado, filtro anti-bots y contenido centralizado en un archivo de configuración para que el cliente lo edite sin tocar código.',
-      en: 'Freelance project for an online fitness coach. Built with Astro and deployed on Vercel, with a validated lead capture form, bot filtering and all content centralised in a single config file so the client can edit it without touching code.',
+      es: 'Sitio con el que un preparador físico capta clientes: presenta su servicio y le hace llegar las solicitudes de evaluación a su correo. Puede cambiar precios y contenidos él mismo, sin saber programar.',
+      en: 'Site a personal trainer uses to win clients: it presents his service and delivers evaluation requests to his inbox. He can change prices and content himself, without knowing how to code.',
     },
     tags: ['Astro', 'JavaScript', 'CSS', 'Vercel', 'Formspree'],
   },
   {
-    icon: '🏛️',
-    github: 'https://github.com/CristianSotoAlvarez/CristianSotoAlvarez-Proyecto_SIA_Registro_CivilFinal',
+    icon: '🤖',
+    github: 'https://github.com/CristianSotoAlvarez/dialogflow-cx-webchat',
     demo: null,
-    images: [
-      '/projects/registro-civil-1.png',
-      '/projects/registro-civil-2.png',
-    ],
+    images: ['/projects/chatbot-1.jpg'],
+    eyebrow: { es: 'Proyecto universitario', en: 'University project' },
     name: {
-      es: 'Sistema de Registro Civil',
-      en: 'Civil Registry System',
+      es: 'FINRA Bot — Chatbot orientativo PUCV',
+      en: 'FINRA Bot — PUCV Orientation Chatbot',
     },
     description: {
-      es: 'Sistema de Información Administrativa (SIA) para gestión de registros civiles en Java Swing. Permite registrar, consultar y administrar datos de personas con persistencia en CSV.',
-      en: 'Administrative Information System (SIA) for civil registry management in Java Swing. Enables registering, querying and managing personal records with CSV-based data persistence.',
+      es: 'Asistente que orienta a estudiantes dentro del edificio de la facultad: les responde por texto o por voz dónde queda cada lugar y cómo llegar.',
+      en: 'Assistant that helps students find their way inside the faculty building: it answers by text or voice where each place is and how to get there.',
     },
-    tags: ['Java', 'Java Swing', 'CSV', 'Apache Ant', 'NetBeans'],
+    tags: ['Dialogflow CX', 'JavaScript', 'HTML', 'CSS', 'Web Speech API'],
   },
   {
     icon: '🍽️',
@@ -70,30 +71,35 @@ const PROJECTS = [
       '/projects/diaulo-2.jpg',
       '/projects/diaulo-3.jpg',
     ],
+    eyebrow: { es: 'Proyecto universitario', en: 'University project' },
     name: {
-      es: 'DiauloFood — Gestión de Restaurante',
+      es: 'DiauloFood — Gestión de restaurante',
       en: 'DiauloFood — Restaurant Manager',
     },
     description: {
-      es: 'Aplicación web para gestión integral de restaurantes con control de roles (administrador y garzón), manejo de mesas en tiempo real, catálogo de productos con CRUD y seguimiento de pedidos por mesa.',
-      en: 'Web app for full restaurant management with role-based access (admin and waiter), real-time table status tracking, product catalog with CRUD and per-table order tracking.',
+      es: 'Aplicación para que un restaurante lleve sus mesas y pedidos en tiempo real: el administrador gestiona el catálogo y el garzón toma los pedidos por mesa.',
+      en: 'App for a restaurant to manage tables and orders in real time: the admin manages the catalogue and the waiter takes orders table by table.',
     },
     tags: ['Ionic', 'Angular', 'TypeScript', 'SCSS'],
   },
   {
-    icon: '🤖',
-    github: 'https://github.com/CristianSotoAlvarez/dialogflow-cx-webchat',
+    icon: '🏛️',
+    github: 'https://github.com/CristianSotoAlvarez/CristianSotoAlvarez-Proyecto_SIA_Registro_CivilFinal',
     demo: null,
-    images: ['/projects/chatbot-1.jpg'],
+    images: [
+      '/projects/registro-civil-1.png',
+      '/projects/registro-civil-2.png',
+    ],
+    eyebrow: { es: 'Proyecto universitario', en: 'University project' },
     name: {
-      es: 'FINRA Bot — Chatbot Orientativo PUCV',
-      en: 'FINRA Bot — PUCV Orientation Chatbot',
+      es: 'Sistema de Registro Civil',
+      en: 'Civil Registry System',
     },
     description: {
-      es: 'Chatbot orientativo para la Facultad de Ingeniería de la PUCV, integrado con Dialogflow CX. Permite guiar a estudiantes dentro del edificio mediante texto o voz, con soporte TTS y reconocimiento de voz en Chrome.',
-      en: 'Orientation chatbot for the PUCV Engineering Faculty, integrated with Dialogflow CX. Guides students inside the building via text or voice, with TTS support and voice recognition in Chrome.',
+      es: 'Sistema de escritorio para registrar, consultar y administrar datos de personas, con búsqueda por RUT y persistencia de la información.',
+      en: 'Desktop system to register, query and manage personal records, with ID-based search and data persistence.',
     },
-    tags: ['Dialogflow CX', 'JavaScript', 'HTML', 'CSS', 'TTS', 'Web Speech API'],
+    tags: ['Java', 'Java Swing', 'CSV', 'Apache Ant'],
   },
 ]
 
@@ -131,32 +137,34 @@ function ChevronRight() {
   )
 }
 
-function ProjectImages({ images, imageOptions }) {
+function ProjectImages({ images, alt }) {
   const [imgIndex, setImgIndex] = useState(0)
   if (!images || images.length === 0) return null
 
   const prevImg = (e) => { e.stopPropagation(); setImgIndex(i => (i - 1 + images.length) % images.length) }
   const nextImg = (e) => { e.stopPropagation(); setImgIndex(i => (i + 1) % images.length) }
 
-  const opt = imageOptions?.[imgIndex]
-  const imgStyle = opt ? { objectFit: opt.fit, objectPosition: opt.position } : undefined
-
   return (
     <div className="project-images">
       <img
         key={imgIndex}
         src={images[imgIndex]}
-        alt={`Screenshot ${imgIndex + 1}`}
+        alt={`${alt} — ${imgIndex + 1}`}
         className="project-screenshot"
-        style={imgStyle}
+        loading="lazy"
       />
       {images.length > 1 && (
         <>
-          <button className="project-img-btn project-img-prev" onClick={prevImg} aria-label="Anterior"><ChevronLeft /></button>
-          <button className="project-img-btn project-img-next" onClick={nextImg} aria-label="Siguiente"><ChevronRight /></button>
+          <button className="project-img-btn project-img-prev" onClick={prevImg} aria-label="Imagen anterior"><ChevronLeft /></button>
+          <button className="project-img-btn project-img-next" onClick={nextImg} aria-label="Imagen siguiente"><ChevronRight /></button>
           <div className="project-img-dots">
             {images.map((_, i) => (
-              <span key={i} className={`project-img-dot${i === imgIndex ? ' active' : ''}`} onClick={e => { e.stopPropagation(); setImgIndex(i) }} />
+              <button
+                key={i}
+                className={`project-img-dot${i === imgIndex ? ' active' : ''}`}
+                onClick={e => { e.stopPropagation(); setImgIndex(i) }}
+                aria-label={`Imagen ${i + 1}`}
+              />
             ))}
           </div>
         </>
@@ -165,44 +173,62 @@ function ProjectImages({ images, imageOptions }) {
   )
 }
 
-const GAP = 24
+function ProjectCard({ project, lang, tr, index }) {
+  const ref = useRef()
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setVisible(true); io.disconnect() }
+    }, { threshold: 0.12 })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  const name = project.name[lang] ?? project.name.es
+  const description = project.description[lang] ?? project.description.es
+  const eyebrow = project.eyebrow?.[lang] ?? project.eyebrow?.es
+
+  return (
+    <article
+      ref={ref}
+      className={`project-card${project.featured ? ' featured' : ''}${visible ? ' is-visible' : ''}`}
+      style={{ transitionDelay: `${Math.min(index, 4) * 70}ms` }}
+    >
+      <ProjectImages images={project.images} alt={name} />
+      <div className="project-card-body">
+        <div className="project-card-top">
+          <span className="project-icon" aria-hidden="true">{project.icon}</span>
+          <div className="project-links">
+            {project.github && (
+              <a href={project.github} target="_blank" rel="noopener noreferrer" title={tr.codeLabel} aria-label={tr.codeLabel}>
+                <GitHubIcon />
+              </a>
+            )}
+            {project.demo && (
+              <a href={project.demo} target="_blank" rel="noopener noreferrer" title={tr.demoLabel} aria-label={tr.demoLabel}>
+                <ExternalLinkIcon />
+              </a>
+            )}
+          </div>
+        </div>
+        {eyebrow && <span className="project-eyebrow">{eyebrow}</span>}
+        <h3 className="project-name">{name}</h3>
+        <p className="project-description">{description}</p>
+        <div className="project-tags">
+          {project.tags.map(tag => (
+            <span className="project-tag" key={tag}>{tag}</span>
+          ))}
+        </div>
+      </div>
+    </article>
+  )
+}
 
 export default function Projects({ lang }) {
   const tr = t[lang].projects
-  const [current, setCurrent] = useState(0)
-  const [clickPaused, setClickPaused] = useState(false)
-  const clickTimerRef = useRef()
-  const trackRef = useRef()
-  const total = PROJECTS.length
-
-  const next = () => setCurrent(i => (i + 1) % total)
-  const prev = () => setCurrent(i => (i - 1 + total) % total)
-
-  // Pause on click, resume after 8s
-  const handleCardClick = () => {
-    setClickPaused(true)
-    clearTimeout(clickTimerRef.current)
-    clickTimerRef.current = setTimeout(() => setClickPaused(false), 8000)
-  }
-
-  // Slide the track so the active card is centered
-  useEffect(() => {
-    const track = trackRef.current
-    if (!track) return
-    const slide = track.children[current]
-    if (!slide) return
-    const parentWidth = track.parentElement.offsetWidth
-    const slideWidth = slide.offsetWidth
-    const offset = current * (slideWidth + GAP) - (parentWidth - slideWidth) / 2
-    track.style.transform = `translateX(${-offset}px)`
-  }, [current])
-
-  // Auto-advance
-  useEffect(() => {
-    if (clickPaused || total <= 1) return
-    const id = setInterval(next, 4000)
-    return () => clearInterval(id)
-  }, [clickPaused, total, current])
 
   return (
     <section className="projects section" id="projects">
@@ -210,80 +236,11 @@ export default function Projects({ lang }) {
         <h2 className="section-title">{tr.title}</h2>
         <p className="section-subtitle">{tr.subtitle}</p>
 
-        <div className="carousel-wrapper">
-          {/* Prev button */}
-          <button
-            className="carousel-btn carousel-btn-prev"
-            onClick={prev}
-            aria-label="Anterior"
-            style={{ visibility: total > 1 ? 'visible' : 'hidden' }}
-          >
-            <ChevronLeft />
-          </button>
-
-          {/* Sliding track */}
-          <div className="carousel-viewport">
-            <div className="carousel-track" ref={trackRef} style={{ gap: GAP }}>
-              {PROJECTS.map((project, i) => {
-                const name = project.name[lang] ?? project.name.es
-                const description = project.description[lang] ?? project.description.es
-                return (
-                  <div key={i} className={`project-card carousel-slide${i === current ? ' active' : ''}`} onClick={handleCardClick}>
-                    <ProjectImages images={project.images} imageOptions={project.imageOptions} />
-                    <div className="project-card-body">
-                      <div className="project-card-top">
-                        <span className="project-icon">{project.icon}</span>
-                        <div className="project-links">
-                          {project.github && (
-                            <a href={project.github} target="_blank" rel="noopener noreferrer" title={tr.codeLabel}>
-                              <GitHubIcon />
-                            </a>
-                          )}
-                          {project.demo && (
-                            <a href={project.demo} target="_blank" rel="noopener noreferrer" title={tr.demoLabel}>
-                              <ExternalLinkIcon />
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                      <h3 className="project-name">{name}</h3>
-                      <p className="project-description">{description}</p>
-                      <div className="project-tags">
-                        {project.tags.map(tag => (
-                          <span className="project-tag" key={tag}>{tag}</span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Next button */}
-          <button
-            className="carousel-btn carousel-btn-next"
-            onClick={next}
-            aria-label="Siguiente"
-            style={{ visibility: total > 1 ? 'visible' : 'hidden' }}
-          >
-            <ChevronRight />
-          </button>
+        <div className="projects-grid">
+          {PROJECTS.map((project, i) => (
+            <ProjectCard key={project.name.es} project={project} lang={lang} tr={tr} index={i} />
+          ))}
         </div>
-
-        {/* Dots */}
-        {total > 1 && (
-          <div className="carousel-dots">
-            {PROJECTS.map((_, i) => (
-              <button
-                key={i}
-                className={`carousel-dot${i === current ? ' active' : ''}`}
-                onClick={() => setCurrent(i)}
-                aria-label={`Proyecto ${i + 1}`}
-              />
-            ))}
-          </div>
-        )}
       </div>
     </section>
   )

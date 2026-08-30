@@ -23,7 +23,7 @@ export default function About({ lang }) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             <div className="about-avatar-wrapper">
               <img
-                src="/avatars/avatar-coding.png"
+                src="/avatars/avatar-coding.webp"
                 alt="Cristian programando"
                 className="about-avatar"
               />

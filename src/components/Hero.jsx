@@ -121,7 +121,7 @@ export default function Hero({ lang }) {
           </div>
 
           <div className="hero-avatar-wrapper">
-            <img src="/avatars/avatar-hello.png" alt="Cristian Soto" className="hero-avatar" />
+            <img src="/avatars/avatar-hello.webp" alt="Cristian Soto" className="hero-avatar" />
           </div>
         </div>
       </div>

@@ -747,7 +747,7 @@ img {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
   gap: 24px;
 }
 
@@ -759,13 +759,87 @@ img {
   display: flex;
   flex-direction: column;
   box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.55s ease;
 }
 
-.carousel-slide.active .project-card:hover {
+.project-card:hover {
   border-color: var(--border-hover);
   box-shadow: var(--shadow-orange), 0 20px 48px rgba(0,0,0,0.18);
-  transform: translateY(-8px) scale(1.02);
+  transform: translateY(-6px);
+}
+
+/* entrada al hacer scroll */
+.project-card {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.project-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-card.is-visible:hover {
+  transform: translateY(-6px);
+}
+
+/* etiqueta de contexto: dice de donde viene el proyecto */
+.project-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange);
+  opacity: 0.85;
+}
+
+/* proyecto destacado: ocupa la fila completa */
+.project-card.featured {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 900px) {
+  .project-card.featured {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .project-card.featured .project-images {
+    width: 60%;
+    flex-shrink: 0;
+    border-radius: var(--radius) 0 0 var(--radius);
+  }
+
+  .project-card.featured .project-images {
+    background: var(--bg-secondary);
+  }
+
+  .project-card.featured .project-screenshot {
+    height: 100%;
+    min-height: 380px;
+    object-fit: cover;
+    object-position: left top;
+  }
+
+  .project-card.featured .project-images:hover .project-screenshot {
+    transform: scale(1.02);
+  }
+
+  .project-card.featured .project-card-body {
+    flex: 1;
+    justify-content: center;
+    padding: 32px 36px;
+    gap: 12px;
+  }
+
+  .project-card.featured .project-name {
+    font-size: 1.5rem;
+    line-height: 1.25;
+  }
+
+  .project-card.featured .project-description {
+    font-size: 0.92rem;
+  }
 }
 
 .project-card-body {
@@ -906,6 +980,8 @@ img {
 }
 
 .project-img-dot {
+  border: none;
+  padding: 0;
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -1292,5 +1368,10 @@ img {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .project-card {
+    opacity: 1;
+    transform: none;
   }
 }
