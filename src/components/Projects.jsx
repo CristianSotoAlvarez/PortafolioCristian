@@ -3,6 +3,27 @@ import t from '../i18n'
 
 const PROJECTS = [
   {
+    icon: '🚛',
+    github: 'https://github.com/CristianSotoAlvarez/AvanceSeminario---Cristian-Soto',
+    demo: null,
+    images: [
+      '/projects/jat-1.jpg',
+      '/projects/jat-2.jpg',
+      '/projects/jat-3.jpg',
+      '/projects/jat-4.jpg',
+      '/projects/jat-5.jpg',
+    ],
+    name: {
+      es: 'JAT (Justo a Tiempo) — Trazabilidad de despacho',
+      en: 'JAT (Just In Time) — Dispatch Traceability',
+    },
+    description: {
+      es: 'Seminario de título. Sistema web de trazabilidad y KPIs para el despacho de una planta agroindustrial, con seguimiento en tiempo real de camiones, andenes y pallets, y dos modelos predictivos de árbol de decisión integrados en la API.',
+      en: 'Final-year thesis. Web system for dispatch traceability and KPIs at an agro-industrial plant, with real-time tracking of trucks, docks and pallets, and two decision-tree models served from the API.',
+    },
+    tags: ['NestJS', 'Next.js', 'Prisma', 'PostgreSQL', 'Socket.IO', 'Docker', 'Python'],
+  },
+  {
     icon: '🏛️',
     github: 'https://github.com/CristianSotoAlvarez/CristianSotoAlvarez-Proyecto_SIA_Registro_CivilFinal',
     demo: null,
