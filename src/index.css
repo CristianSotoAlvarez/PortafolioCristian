@@ -111,10 +111,7 @@ img {
   font-weight: 700;
   letter-spacing: -0.03em;
   margin-bottom: 10px;
-  background: var(--gradient-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text);
 }
 
 .section-subtitle {
@@ -816,6 +813,7 @@ img {
 
   .project-card.featured .project-screenshot {
     height: 100%;
+    aspect-ratio: auto;
     min-height: 380px;
     object-fit: cover;
     object-position: left top;
@@ -918,9 +916,10 @@ img {
 
 .project-screenshot {
   width: 100%;
-  height: 220px;
+  aspect-ratio: 16 / 10;
+  height: auto;
   object-fit: cover;
-  object-position: top center;
+  object-position: left top;
   display: block;
   filter: brightness(0.96);
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease;
@@ -1204,6 +1203,12 @@ img {
   outline: none;
   transition: border-color var(--transition);
   resize: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 .form-group input:focus,

@@ -3,7 +3,6 @@ import t from '../i18n'
 
 const PROJECTS = [
   {
-    icon: '🚛',
     github: 'https://github.com/CristianSotoAlvarez/AvanceSeminario---Cristian-Soto',
     demo: null,
     featured: true,
@@ -26,7 +25,6 @@ const PROJECTS = [
     tags: ['NestJS', 'Next.js', 'Prisma', 'PostgreSQL', 'Socket.IO', 'Docker', 'Python'],
   },
   {
-    icon: '💪',
     github: null,
     demo: 'https://cris-fness.vercel.app/',
     images: [
@@ -47,7 +45,6 @@ const PROJECTS = [
     tags: ['Astro', 'JavaScript', 'CSS', 'Vercel', 'Formspree'],
   },
   {
-    icon: '🤖',
     github: 'https://github.com/CristianSotoAlvarez/dialogflow-cx-webchat',
     demo: null,
     images: ['/projects/chatbot-1.jpg'],
@@ -63,7 +60,6 @@ const PROJECTS = [
     tags: ['Dialogflow CX', 'JavaScript', 'HTML', 'CSS', 'Web Speech API'],
   },
   {
-    icon: '🍽️',
     github: 'https://github.com/AlvaroCG20/Proyecto-Web-DiauloFood',
     demo: null,
     images: [
@@ -83,12 +79,11 @@ const PROJECTS = [
     tags: ['Ionic', 'Angular', 'TypeScript', 'SCSS'],
   },
   {
-    icon: '🏛️',
     github: 'https://github.com/CristianSotoAlvarez/CristianSotoAlvarez-Proyecto_SIA_Registro_CivilFinal',
     demo: null,
     images: [
-      '/projects/registro-civil-1.png',
-      '/projects/registro-civil-2.png',
+      '/projects/registro-civil-1.jpg',
+      '/projects/registro-civil-2.jpg',
     ],
     eyebrow: { es: 'Proyecto universitario', en: 'University project' },
     name: {
@@ -200,7 +195,7 @@ function ProjectCard({ project, lang, tr, index }) {
       <ProjectImages images={project.images} alt={name} />
       <div className="project-card-body">
         <div className="project-card-top">
-          <span className="project-icon" aria-hidden="true">{project.icon}</span>
+          
           <div className="project-links">
             {project.github && (
               <a href={project.github} target="_blank" rel="noopener noreferrer" title={tr.codeLabel} aria-label={tr.codeLabel}>

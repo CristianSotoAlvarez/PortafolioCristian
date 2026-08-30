@@ -186,13 +186,34 @@ export default function Background({ theme }) {
     }
   }, [theme])
 
+  // el fondo animado es la entrada del sitio: se desvanece al dejar el hero
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    let ticking = false
+    const apply = () => {
+      const alto = window.innerHeight || 1
+      const o = Math.max(0, 1 - window.scrollY / (alto * 0.85))
+      canvas.style.opacity = String(o)
+      ticking = false
+    }
+    const onScroll = () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(apply) }
+    }
+    apply()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden="true"
       style={{
         position: 'fixed', top: 0, left: 0,
         width: '100%', height: '100%',
         pointerEvents: 'none', zIndex: 0,
+        transition: 'opacity 0.3s linear',
       }}
     />
   )
