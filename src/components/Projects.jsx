@@ -24,6 +24,26 @@ const PROJECTS = [
     tags: ['NestJS', 'Next.js', 'Prisma', 'PostgreSQL', 'Socket.IO', 'Docker', 'Python'],
   },
   {
+    icon: '💪',
+    github: null,
+    demo: 'https://cris-fness.vercel.app/',
+    images: [
+      '/projects/crisfness-1.jpg',
+      '/projects/crisfness-2.jpg',
+      '/projects/crisfness-3.jpg',
+      '/projects/crisfness-4.jpg',
+    ],
+    name: {
+      es: 'Cris Fness — Sitio para asesoría fitness',
+      en: 'Cris Fness — Online Fitness Coaching Site',
+    },
+    description: {
+      es: 'Proyecto freelance para un preparador físico. Sitio construido en Astro y desplegado en Vercel, con formulario de captación de clientes validado, filtro anti-bots y contenido centralizado en un archivo de configuración para que el cliente lo edite sin tocar código.',
+      en: 'Freelance project for an online fitness coach. Built with Astro and deployed on Vercel, with a validated lead capture form, bot filtering and all content centralised in a single config file so the client can edit it without touching code.',
+    },
+    tags: ['Astro', 'JavaScript', 'CSS', 'Vercel', 'Formspree'],
+  },
+  {
     icon: '🏛️',
     github: 'https://github.com/CristianSotoAlvarez/CristianSotoAlvarez-Proyecto_SIA_Registro_CivilFinal',
     demo: null,
